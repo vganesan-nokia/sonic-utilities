@@ -110,6 +110,7 @@
   * [QoS Show commands](#qos-show-commands)
     * [PFC](#pfc)
     * [Queue And Priority-Group](#queue-and-priority-group)
+    * [Buffer Pool](#buffer-pool)
   * [QoS config commands](#qos-config-commands)
 * [sFlow](#sflow)
   * [sFlow Show commands](#sflow-show-commands)
@@ -340,6 +341,7 @@ This command displays the full list of show commands available in the software; 
     aaa                   Show AAA configuration
     acl                   Show ACL related information
     arp                   Show IP ARP table
+    buffer_pool           Show details of the Buffer-pools
     clock                 Show date and time
     ecn                   Show ECN configuration
     environment           Show environmentals (voltages, fans, temps)
@@ -1984,6 +1986,34 @@ Optionally, you can display configured console ports only by specifying the `-b`
 ## Console config commands
 
 This sub-section explains the list of configuration options available for console management module.
+
+**config console enable**
+
+This command is used to enable SONiC console switch feature.
+
+- Usage:
+  ```
+  config console enable
+  ```
+
+- Example:
+  ```
+  admin@sonic:~$ sudo config console enable
+  ```
+
+**config console disable**
+
+This command is used to disable SONiC console switch feature.
+
+- Usage:
+  ```
+  config console disable
+  ```
+
+- Example:
+  ```
+  admin@sonic:~$ sudo config console disable
+  ```
 
 **config console add**
 
@@ -6168,6 +6198,52 @@ This command displays the user persistet-watermark for the queues (Egress shared
 
   admin@sonic:~$ sonic-clear priority-group persistent-watermark headroom
   ```
+
+#### Buffer Pool
+
+This sub-section explains the following buffer pool parameters that can be displayed using "show buffer_pool" command.
+1) buffer pool watermark
+2) buffer pool persistent-watermark
+
+**show buffer_pool watermark**
+
+This command displays the user watermark for all the buffer pools
+
+- Usage:
+  ```
+  show buffer_pool watermark
+  ```
+
+- Example:
+  ```
+  admin@sonic:~$ show buffer_pool watermark
+  Shared pool maximum occupancy:
+                   Pool    Bytes
+  ---------------------  -------
+  ingress_lossless_pool        0
+             lossy_pool     2464
+  ```
+
+
+**show buffer_pool persistent-watermark**
+
+This command displays the user persistent-watermark for all the buffer pools
+
+- Usage:
+  ```
+  show buffer_pool persistent-watermark
+  ```
+
+- Example:
+  ```
+  admin@sonic:~$ show buffer_pool persistent-watermark
+  Shared pool maximum occupancy:
+                   Pool    Bytes
+  ---------------------  -------
+  ingress_lossless_pool        0
+             lossy_pool     2464
+  ```
+
 
 
 ### QoS config commands
